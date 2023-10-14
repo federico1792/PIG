@@ -5,3 +5,5 @@
   
 # Participantes
   Campo, Gaston Federico
+  Nogueira, Júnior 
+  Chacon, Lautaro
