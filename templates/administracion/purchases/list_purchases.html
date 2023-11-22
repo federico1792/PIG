@@ -1,0 +1,184 @@
+{% extends 'base-admin.html' %}
+
+
+{% load static %}
+
+
+{% block style %}
+    <!-- DataTables -->
+    <link rel="stylesheet" href="{% static './assets/libs/adminlte/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css' %}">
+    <link rel="stylesheet" href="{% static './assets/libs/adminlte/plugins/datatables-responsive/css/responsive.bootstrap4.min.css' %}">
+    <link rel="stylesheet" href="{% static './assets/libs/adminlte/plugins/datatables-buttons/css/buttons.bootstrap4.min.css' %}">
+{% endblock %}
+
+
+{% block title %}
+Compras
+{% endblock %}
+
+
+{% block act-purchases %}
+active
+{% endblock %}
+
+
+{% block main %}
+
+		<!-- Content Wrapper. Contains page content -->
+		<div class="content-wrapper">
+			<!-- Content Header (Page header) -->
+			<div class="content-header">
+				<div class="container-fluid px-2">
+					<div class="row mb-2">
+						<div>
+							<h1 class="m-0">Compras</h1>
+						</div>
+					</div>
+
+					<div class="row mb-2">
+						<div class="col-lg-10">
+							<ol class="breadcrumb float-sm-left">
+                                <li class="breadcrumb-item"><a href="{% url 'purchases' %}">Compras</a></li>
+                                <li class="breadcrumb-item active">Listado de compras</li>
+                                </ol>
+						</div>
+                        <div class="col-lg-2">
+                            <a href="{% url 'add-purchase' %}" class="mb-2 btn btn-block btn-primary btn-sm"><i class="mx-3 fas fa-plus-circle"></i>Agregar compra</a>
+                        </div>
+					</div>
+
+				</div>
+			</div>
+			<!-- /.content-header -->
+			
+			<!-- Main content -->
+			<div class="content">
+				<div class="container-fluid">
+					<div class="row">
+
+						<div class="col-12">
+                            <div class="card">
+                                {% if messages %}
+                                <div class="alert alert-success alert-dismissible fade show">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                    <h5><i class="icon fas fa-check"></i> Mensaje!</h5>
+                                    {% for message in messages %}
+                                        <p class="mt-3">
+                                            <ul>
+                                                <li>{{ message|escape }}</li>
+                                            </ul>
+                                        </p>
+                                    {% endfor %}
+                                </div>
+                                {% endif %}
+                                <div class="card-header bg-success">
+                                  <h3 class="card-title">Listado de compras</h3>
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="card-body">
+                                  <table id="example1" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Compra N°</th>
+                                            <th>Fecha</th>
+                                            <th>Proveedor</th>
+                                            <th>Total</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for purchase in purchases %}
+                                        <tr>
+                                            <td>{{purchase}}</td>
+                                            <td>{{purchase.date}}</td>
+                                            <td>{{purchase.supplier}}</td>
+                                            <td>{{purchase.total}}</td>
+                                            <td style="width: 50px;">
+                                                <div class="text-center">
+                                                    <a href="{% url 'det-purchase' purchase.id %}" class="text-primary"><i class="fas fa-info"></i></a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                                </div>
+                                <!-- /.card-body -->
+                              </div>
+                              <!-- /.card -->
+						</div>
+
+					</div>
+
+				</div><!-- /.container-fluid -->
+			</div>
+			<!-- /.content -->
+
+		</div>
+		<!-- /.content-wrapper -->
+
+{% endblock %}
+
+
+{% block script %}
+<!-- DataTables  & Plugins -->
+<script src="{% static './assets/libs/adminlte/plugins/datatables/jquery.dataTables.min.js' %}"></script>
+<script src="{% static './assets/libs/adminlte/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+<script src="{% static './assets/libs/adminlte/plugins/datatables-responsive/js/dataTables.responsive.min.js' %}"></script>
+<script src="{% static './assets/libs/adminlte/plugins/datatables-responsive/js/responsive.bootstrap4.min.js' %}"></script>
+<script src="{% static './assets/libs/adminlte/plugins/datatables-buttons/js/dataTables.buttons.min.js' %}"></script>
+<script src="{% static './assets/libs/adminlte/plugins/datatables-buttons/js/buttons.bootstrap4.min.js' %}"></script>
+<script src="{% static './assets/libs/adminlte/plugins/jszip/jszip.min.js' %}"></script>
+<script src="{% static './assets/libs/adminlte/plugins/pdfmake/pdfmake.min.js' %}"></script>
+<script src="{% static './assets/libs/adminlte/plugins/pdfmake/vfs_fonts.js' %}"></script>
+<script src="{% static './assets/libs/adminlte/plugins/datatables-buttons/js/buttons.html5.min.js' %}"></script>
+<script src="{% static './assets/libs/adminlte/plugins/datatables-buttons/js/buttons.print.min.js' %}"></script>
+<script src="{% static './assets/libs/adminlte/plugins/datatables-buttons/js/buttons.colVis.min.js' %}"></script>
+<!-- Page specific script -->
+<script>
+    $(function () {
+      $("#example1").DataTable({
+        "responsive": true, "lengthChange": false, "autoWidth": false,
+        "buttons": [
+        {
+                extend: 'pdf',
+                text: 'Exportar a PDF',
+                title: 'Proyecto eCommerce',
+                exportOptions: {
+                        columns: ':visible'
+                    },
+                customize: function (doc) {
+                    // Ajustar el tamaño de la exportación PDF al 100% de la página
+                    doc.content[1].table.widths = Array(doc.content[1].table.body[0].length + 1).join('*').split('');
+                },
+            },
+            {
+                extend: 'excel',
+                text: 'Exportar a Excel',
+                title: 'Proyecto eCommerce',
+                exportOptions: {
+                        columns: ':visible'
+                    },
+            },
+            {
+                extend: 'print',
+                text: 'Imprimir',
+                title: 'Proyecto eCommerce',
+                exportOptions: {
+                        columns: ':visible'
+                    },
+            },
+            "colvis"]
+      }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+      $('#example2').DataTable({
+        "paging": true,
+        "lengthChange": false,
+        "searching": false,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false,
+        "responsive": true,
+      });
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'base-users.html' %}
+
+{% block content %}
+    <!--MAIN-->
+    <div class="container main">
+        <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4 my-5">
+            {% for producto in productos %}
+            <div class="col">
+                <div class="card h-100">
+                    <img src="{{ producto.image.url }}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title text-center bg-secondary">{{ producto.name }}</h5>
+                        <p class="card-text"> <strong>Codigo</strong> <i>{{ producto.code }}</i></p>
+                        <p class="card-text"><i>{{ producto.description }}</i></p>
+                        <p class="card-text"> <strong>Stock</strong> <i>{{ producto.stock }}</i></p>
+                        <p class="card-text"><i>${{ producto.sale_price }}</i></p>
+                    </div>
+                    <div class="card-footer d-flex justify-content-evenly">
+                        <a href="#" class="btn btn-primary">Detalles</a>
+                        <a href="#" class="btn btn-warning">Agregar</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <!--END MAIN-->
+{% endblock %}

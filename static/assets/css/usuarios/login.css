@@ -1,0 +1,92 @@
+/* =========== Google Fonts ============ */
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap");
+
+/* =============== Globals ============== */
+* {
+  font-family: "Ubuntu", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --blue: #2a2185;
+  --white: #fff;
+  --gray: #f5f5f5;
+  --black1: #222;
+  --black2: #999;
+}
+
+body{
+  background-color: var(--black2) !important;
+}
+
+.form-register {
+  width: 400px;
+  background: var(--blue);
+  padding: 30px;
+  margin: auto;
+  margin-top: 100px;
+  border-radius: 16px;
+  font-family: 'calibri';
+  color: var(--white);
+  box-shadow: 7px 13px 37px var(--black1);
+}
+
+.form-register h4 {
+  font-size: 22px;
+  margin-bottom: 20px;
+}
+
+.icon{
+  text-align: center;
+}
+ion-icon {
+  font-size: 5rem;
+}
+
+.controls {
+  width: 100%;
+  background: var(--gray);
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+  border: 1px solid var(--blue);
+  font-family: 'calibri';
+  font-size: 18px;
+  color: var(--black1);
+}
+
+.form-register p {
+  height: 40px;
+  text-align: center;
+  font-size: 18px;
+  line-height: 40px;
+}
+
+.form-register a {
+  color: var(--white);
+  text-decoration: none;
+}
+
+.form-register a:hover {
+  color: var(--white);
+  text-decoration: underline;
+}
+
+.form-register .botons {
+  width: 100%;
+  background: var(--blue);
+  border: 1px solid var(--gray);
+  padding: 12px;
+  color: var(--white);
+  margin: 16px 0;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.botons:hover {
+  background-color: var(--white);
+  color: var(--blue);
+}

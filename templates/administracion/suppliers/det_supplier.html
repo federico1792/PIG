@@ -1,0 +1,96 @@
+{% extends 'base-admin.html' %}
+
+
+{% block style %}
+{% endblock %}
+
+
+{% block title %}
+Compras
+{% endblock %}
+
+
+{% block act-purchases %}
+active
+{% endblock %}
+
+
+{% block main %}
+
+		<!-- Content Wrapper. Contains page content -->
+		<div class="content-wrapper">
+			<!-- Content Header (Page header) -->
+			<div class="content-header">
+				<div class="container-fluid px-2">
+					<div class="row mb-2">
+						<div>
+							<h1 class="m-0">Compras</h1>
+						</div>
+					</div>
+
+					<div class="row mb-2">
+						<div class="col-lg-10">
+							<ol class="breadcrumb float-sm-left">
+                                <li class="breadcrumb-item"><a href="{% url 'purchases' %}">Compras</a></li>
+                                <li class="breadcrumb-item"><a href="{% url 'list-suppliers' %}">Listado de proveedores</a></li>
+                                <li class="breadcrumb-item active">Detalle de proveedor</li>
+                                </ol>
+						</div>
+                        <div class="col-lg-2">
+                            <a href="{% url 'list-suppliers' %}" class="mb-2 btn btn-block btn-secondary btn-sm"><i class="px-4 fas fa-arrow-alt-circle-left"></i>Volver</a>
+                        </div>
+				</div>
+
+		    </div>
+            <!-- /.content-header -->
+
+			<!-- Main content -->
+			<div class="content">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-12">
+                            <div class="card card-widget widget-user">
+                                <div class="widget-user-header bg-info" style="height: auto !important;">
+                                    <h5 class="widget-user-desc">Proveedor</h5>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="row">
+                                        <div class="col-sm-4 border-right">
+                                            <div class="description-block">
+                                                <span class="description-text">Nombre:</span>
+                                                <h5 class="description-header">{{object.name}}</h5>
+                                            </div>
+                                        </div>
+                                
+                                        <div class="col-sm-4 border-right">
+                                            <div class="description-block">
+                                                <span class="description-text">Celular:</span>
+                                                <h5 class="description-header">{{object.cell_phone}}</h5>
+                                            </div>
+                                        </div>
+                                
+                                        <div class="col-sm-4">
+                                            <div class="description-block">
+                                                <span class="description-text">Email:</span>
+                                                <h5 class="description-header">{{object.email}}</h5>
+                                            </div>
+                                        </div>
+                                
+                                    </div>
+                                
+                                </div>
+                            </div>
+                            <!-- /.card -->
+						</div>
+
+					</div>
+
+				</div><!-- /.container-fluid -->
+			</div>
+            <!-- /.content -->
+
+{% endblock %}
+
+
+{% block script %}
+{% endblock %}

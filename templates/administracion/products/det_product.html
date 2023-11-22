@@ -1,0 +1,122 @@
+{% extends 'base-admin.html' %}
+
+
+{% block style %}
+{% endblock %}
+
+
+{% block title %}
+Inventario
+{% endblock %}
+
+
+{% block act-inventory %}
+active
+{% endblock %}
+
+
+{% block main %}
+
+		<!-- Content Wrapper. Contains page content -->
+		<div class="content-wrapper">
+			<!-- Content Header (Page header) -->
+			<div class="content-header">
+				<div class="container-fluid px-2">
+					<div class="row mb-2">
+						<div>
+							<h1 class="m-0">Inventario</h1>
+						</div>
+					</div>
+
+					<div class="row mb-2">
+						<div class="col-lg-10">
+							<ol class="breadcrumb float-sm-left">
+                                <li class="breadcrumb-item"><a href="{% url 'inventory' %}">Inventario</a></li>
+                                <li class="breadcrumb-item"><a href="{% url 'list-products' %}">Listado de productos</a></li>
+                                <li class="breadcrumb-item active">Detalle producto</li>
+                                </ol>
+						</div>
+                        <div class="col-lg-2">
+                            <a href="{% url 'list-products' %}" class="mb-2 btn btn-block btn-secondary btn-sm"><i class="px-4 fas fa-arrow-alt-circle-left"></i>Volver</a>
+                        </div>
+				</div>
+
+		    </div>
+            <!-- /.content-header -->
+
+			<!-- Main content -->
+			<div class="content">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-12">
+                            <div class="card card-widget widget-user">
+                                <div class="widget-user-header bg-info" style="height: auto !important;">
+                                    <h5 class="widget-user-desc">Nombre: {{object.name}}</h5>
+                                </div>
+                                <div class="widget-user-header" style="height: auto !important;">
+                                    <h3 class="widget-user-username"><strong>Descripcion: </strong>{{object.description}}</h3>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="row">
+                                        <div class="col-sm-4 border-right">
+                                            <div class="description-block">
+                                                <h5 class="description-header">{{object.code}}</h5>
+                                                <span class="description-text">Codigo</span>
+                                            </div>
+                                        </div>
+                                
+                                        <div class="col-sm-4 border-right">
+                                            <div class="description-block">
+                                                <h5 class="description-header">$ {{object.cost_price}}</h5>
+                                                <span class="description-text">Valor Costo</span>
+                                            </div>
+                                        </div>
+                                
+                                        <div class="col-sm-4">
+                                            <div class="description-block">
+                                                <h5 class="description-header">{{object.category}}</h5>
+                                                <span class="description-text">Categoria</span>
+                                            </div>
+                                        </div>
+                                
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-4 border-right">
+                                            <div class="description-block">
+                                                <h5 class="description-header">{{object.stock}}</h5>
+                                                <span class="description-text">Stock</span>
+                                            </div>
+                                        </div>
+                                
+                                        <div class="col-sm-4 border-right">
+                                            <div class="description-block">
+                                                <h5 class="description-header">$ {{object.sale_price}}</h5>
+                                                <span class="description-text">Valor Venta</span>
+                                            </div>
+                                        </div>
+                                
+                                        <div class="col-sm-4">
+                                            <div class="description-block">
+                                                <h5 class="description-header">{{object.bar_code}}</h5>
+                                                <span class="description-text">Cod. barras</span>
+                                            </div>
+                                        </div>
+                                
+                                    </div>
+                                
+                                </div>
+                            </div>
+                            <!-- /.card -->
+						</div>
+
+					</div>
+
+				</div><!-- /.container-fluid -->
+			</div>
+            <!-- /.content -->
+
+{% endblock %}
+
+
+{% block script %}
+{% endblock %}

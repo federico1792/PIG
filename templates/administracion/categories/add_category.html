@@ -1,0 +1,117 @@
+{% extends 'base-admin.html' %}
+
+
+{% load static %}
+
+
+{% block style %}
+{% endblock %}
+
+
+{% block title %}
+Inventario
+{% endblock %}
+
+
+{% block act-inventory %}
+active
+{% endblock %}
+
+
+{% block main %}
+
+
+		<!-- Content Wrapper. Contains page content -->
+		<div class="content-wrapper">
+			<!-- Content Header (Page header) -->
+			<div class="content-header">
+				<div class="container-fluid px-2">
+					<div class="row mb-2">
+						<div>
+							<h1 class="m-0">Inventario</h1>
+						</div>
+					</div>
+
+					<div class="row mb-2">
+						<div class="col-lg-10">
+							<ol class="breadcrumb float-sm-left">
+                                <li class="breadcrumb-item"><a href="{% url 'inventory' %}">Inventario</a></li>
+                                <li class="breadcrumb-item"><a href="{% url 'list-categories' %}">Listado de categorias</a></li>
+                                <li class="breadcrumb-item active">Agregar categoria</li>
+                            </ol>
+						</div>
+                        <div class="col-lg-2">
+                            <a href="{% url 'list-categories' %}" class="mb-2 btn btn-block btn-secondary btn-sm"><i class="px-4 fas fa-arrow-alt-circle-left"></i>Volver</a>
+                        </div>
+				</div>
+
+		    </div>
+            <!-- /.content-header -->
+
+            
+			<!-- Main content -->
+			<div class="content">
+				<div class="container-fluid">
+					<div class="row">
+
+						<div class="col-12">
+                            <div class="card card-primary">
+                                <div class="card-header">
+                                    <h3 class="card-title">Nueva categoria</h3>
+                                </div>
+                                <div class="card-body">
+                                    {% if messages %}
+                                    <div class="alert alert-success alert-dismissible fade show">
+                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                        <h5><i class="icon fas fa-check"></i> Mensaje!</h5>
+                                        {% for message in messages %}
+                                            <p class="mt-3">
+                                                <ul>
+                                                    <li>{{ message|escape }}</li>
+                                                </ul>
+                                            </p>
+                                        {% endfor %}
+                                    </div>
+                                    {% endif %}
+                                    {% if form.errors %}
+                                    <div class="alert alert-danger alert-dismissible">
+                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                        <h5><i class="icon fas fa-ban"></i> Algo salio mal..!</h5>
+                                        {% for key, value in form.errors.items %}
+                                            {{ value|escape }}
+                                        {% endfor %}
+                                    </div>
+                                    {% endif %}
+                                    <form action="{% url 'add-category' %}" method="POST" autocomplete="off">
+                                        {% csrf_token %}
+                                        {% for field in form %}
+                                        <div class="form-group">
+                                            <label for="{{ field.id_for_label }}">{{field.label}}</label>
+                                            {{field}}
+                                        </div>
+                                        {% endfor %}
+                                        <div class="mt-3">
+                                            <button type="submit" class="form-control btn btn-primary">Agregar</button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                            <!-- /.card -->
+						</div>
+
+					</div>
+
+				</div><!-- /.container-fluid -->
+			</div>
+            <!-- /.content -->
+
+		</div>
+		<!-- /.content-wrapper -->
+
+{% endblock %}
+
+
+{% block script %}
+{% endblock %}
+        

@@ -1,0 +1,114 @@
+{% extends 'base-admin.html' %}
+
+
+{% block style %}
+{% endblock %}
+
+
+{% block title %}
+Compras
+{% endblock %}
+
+
+{% block act-purchases %}
+active
+{% endblock %}
+
+
+{% block main %}
+
+		<!-- Content Wrapper. Contains page content -->
+		<div class="content-wrapper">
+			<!-- Content Header (Page header) -->
+			<div class="content-header">
+				<div class="container-fluid px-2">
+					<div class="row mb-2">
+						<div>
+							<h1 class="m-0">Compras</h1>
+						</div>
+					</div>
+
+					<div class="row mb-2">
+						<div class="col-lg-10">
+							<ol class="breadcrumb float-sm-left">
+                                <li class="breadcrumb-item"><a href="{% url 'purchases' %}">Compras</a></li>
+                                <li class="breadcrumb-item"><a href="{% url 'list-purchases' %}">Listado de compras</a></li>
+                                <li class="breadcrumb-item active">Detalle de compra</li>
+                                </ol>
+						</div>
+                        <div class="col-lg-2">
+                            <a href="{% url 'list-purchases' %}" class="mb-2 btn btn-block btn-secondary btn-sm"><i class="px-4 fas fa-arrow-alt-circle-left"></i>Volver</a>
+                        </div>
+				</div>
+
+		    </div>
+            <!-- /.content-header -->
+
+
+			<!-- Main content -->
+			<div class="content">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-12">
+							<div class="card">
+                                {% for key, value in dict.items %}
+                                <div class="card-header bg-dark d-flex justify-content-around">
+                                        <h3 class="card-title mx-auto">Fecha: {{key.date}}</h3>
+                                        <h3 class="card-title mx-auto text-warning">Compra N° {{key}}</h3>
+                                        <h3 class="card-title mx-auto">Proveedor: {{key.supplier}}</h3>
+								</div>
+
+								<!-- /.card-header -->
+								<div class="table-responsive card-body p-0">
+									<table class="table table-striped">
+										<thead>
+											<tr>
+												<th>N°</th>
+												<th>Producto</th>
+												<th>Cantidad</th>
+												<th>Precio</th>
+                                                <th>Total</th>
+											</tr>
+										</thead>
+                                        {% for item in value %}
+                                        <tbody>
+                                        <tr>
+                                            <td>#{{forloop.counter}}</td>
+                                                {% for i in item %}
+                                                    <td>{{i}}</td>
+                                                {% endfor %}
+                                        </tr>
+                                        {% endfor %}
+                                        <tr>
+                                            <td>Total</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td>
+                                                <strong>{{total}}</strong>
+                                            </td>
+                    
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    {% endfor %} 
+								</div>
+								<!-- /.card-body -->
+							</div>
+
+
+
+						</div>
+
+					</div>
+
+				</div><!-- /.container-fluid -->
+			</div>
+            <!-- /.content -->
+
+
+{% endblock %}
+
+
+{% block script %}
+{% endblock %}

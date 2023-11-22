@@ -1,0 +1,39 @@
+.margen {
+    margin-bottom: -1rem !important;
+}
+.bx {
+    font-size: 22px;
+}
+
+ul {
+    list-style: none !important;
+}
+
+a {
+    text-decoration: none !important;
+    color: whitesmoke !important;
+}
+
+.main {
+    min-height: 80vh;
+}
+
+.bg-dark {
+    background-color: #000000 !important;
+}
+
+.bg-dark-light {
+    background-color: #41474a !important;
+}
+
+.bg-secondary {
+    background-color: #81847d !important;
+}
+
+.bg-secondary-light {
+    background-color: #b9c1b9 !important;
+}
+
+.bg-light {
+    background-color: #f2f0ec !important;
+}

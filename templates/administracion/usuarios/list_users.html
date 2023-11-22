@@ -1,0 +1,105 @@
+{% extends 'base-admin.html' %}
+
+
+{% block style %}
+{% endblock %}
+
+
+{% block title %}
+Usuarios
+{% endblock %}
+
+
+{% block act-users %}
+active
+{% endblock %}
+
+
+{% block main %}
+
+		<!-- Content Wrapper. Contains page content -->
+		<div class="content-wrapper">
+			<!-- Content Header (Page header) -->
+			<div class="content-header">
+				<div class="container-fluid px-2">
+					<div class="row mb-2">
+						<div>
+							<h1 class="m-0">Usuarios</h1>
+						</div>
+					</div>
+
+					<div class="row mb-2">
+						<div>
+							<ol class="breadcrumb float-sm-left">
+                                <li class="breadcrumb-item active">Usuarios</li>
+                            </ol>
+						</div>
+				</div>
+
+		    </div>
+            <!-- /.content-header -->
+
+			<!-- Main content -->
+			<div class="content">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-12">
+							<div class="card">
+								<div class="card-header bg-warning">
+									<h3 class="card-title">Listado de Usuarios y Grupos</h3>
+								</div>
+								<!-- /.card-header -->
+								<div class="card-body p-0">
+									<table class="table table-striped">
+										<thead>
+											<tr>
+                                                <th>Usuario</th>
+                                                <th>Grupo</th>
+                                                <th>Cambiar Grupo</th>
+                                                <th>Accion</th>
+											</tr>
+										</thead>
+										<tbody>
+                                            {% for user in queryset %}
+                                            <tr>
+                                                <td>{{ user.username }}</td>
+                                                <td>
+                                                    {% for group in user.groups.all %}
+                                                        <p class="text-danger"><strong>{{ group.name }}</strong></p>
+                                                    {% endfor %}
+                                                </td>
+                                                <td>
+                                                    <form method="post" action="{% url 'upd-group' user.id %}">
+                                                        {% csrf_token %}
+                                                        <div class="form-group">
+                                                            <select class="form-control bg-indigo" name="grupo" id="grupo">                                                                {% for group in all_groups %}
+                                                                    <option class="bg-light" style="font-size: 1.3rem;" value="{{ group.id }}">{{ group.name }}</option>
+                                                                {% endfor %}
+                                                            </select>
+                                                        </div>
+                                                        <td>
+                                                            <button type="submit" class="btn btn-warning">Modificar</button>
+                            
+                                                        </td>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+										</tbody>
+									</table>
+								</div>
+								<!-- /.card-body -->
+							</div>
+						</div>
+
+					</div>
+
+				</div><!-- /.container-fluid -->
+			</div>
+            <!-- /.content -->
+
+{% endblock %}
+
+
+{% block script %}
+{% endblock %}

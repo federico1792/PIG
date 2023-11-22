@@ -1,0 +1,94 @@
+{% extends 'base-admin.html' %}
+
+
+{% block style %}
+{% endblock %}
+
+
+{% block title %}
+Compras
+{% endblock %}
+
+
+{% block act-purchases %}
+active
+{% endblock %}
+
+
+{% block main %}
+
+		<!-- Content Wrapper. Contains page content -->
+		<div class="content-wrapper">
+			<!-- Content Header (Page header) -->
+			<div class="content-header">
+				<div class="container-fluid px-2">
+					<div class="row mb-2">
+						<div>
+							<h1 class="m-0">Compras</h1>
+						</div>
+					</div>
+
+					<div class="row mb-2">
+						<div>
+							<ol class="breadcrumb float-sm-left">
+							<li class="breadcrumb-item active">Compras</li>
+							</ol>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /.content-header -->
+			
+			<!-- Main content -->
+			<div class="content">
+				<div class="container-fluid">
+					<div class="row">
+
+						<div class="col-6">
+							<div class="small-box bg-info">
+								<div class="inner">
+								    <h3>{{total_purchases|length}}</h3>
+				  
+								    <p>Compras</p>
+								</div>
+								<div class="icon">
+									<i class="nav-icon fas fa-store-alt"></i>
+								</div>
+								<a href="{% url 'list-purchases' %}" class="small-box-footer">Compras <i class="fas fa-arrow-circle-right"></i></a>
+							</div>
+						</div>
+
+						<div class="col-6">
+							<div class="small-box bg-olive">
+								<div class="inner">
+								    <h3>{{total_suppliers|length}}</h3>
+				  
+								    <p>Proveedores</p>
+								</div>
+								<div class="icon">
+                                    <i class="fas fa-user-tie"></i>
+								</div>
+								<a href="{% url 'list-suppliers' %}" class="small-box-footer">Proveedores <i class="fas fa-arrow-circle-right"></i></a>
+							</div>
+						</div>
+
+					</div>
+
+					<div class="row">
+						<div class="col-lg-12">
+						</div>
+					</div>
+
+				</div><!-- /.container-fluid -->
+			</div>
+			<!-- /.content -->
+
+		</div>
+		<!-- /.content-wrapper -->
+
+{% endblock %}
+
+
+{% block script %}
+{% endblock %}
+		

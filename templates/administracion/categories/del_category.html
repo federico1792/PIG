@@ -1,0 +1,77 @@
+{% extends 'base-admin.html' %}
+
+
+{% block style %}
+{% endblock %}
+
+
+{% block title %}
+Inventario
+{% endblock %}
+
+
+{% block act-inventory %}
+active
+{% endblock %}
+
+
+{% block main %}
+
+		<!-- Content Wrapper. Contains page content -->
+		<div class="content-wrapper">
+			<!-- Content Header (Page header) -->
+			<div class="content-header">
+				<div class="container-fluid px-2">
+					<div class="row mb-2">
+						<div>
+							<h1 class="m-0">Inventario</h1>
+						</div>
+					</div>
+
+					<div class="row mb-2">
+						<div class="col-lg-10">
+							<ol class="breadcrumb float-sm-left">
+                                <li class="breadcrumb-item"><a href="{% url 'inventory' %}">Inventario</a></li>
+                                <li class="breadcrumb-item"><a href="{% url 'list-categories' %}">Listado de categorias</a></li>
+                                <li class="breadcrumb-item active">Eliminar categoria</li>
+                                </ol>
+						</div>
+                        <div class="col-lg-2">
+                            <a href="{% url 'list-categories' %}" class="mb-2 btn btn-block btn-secondary btn-sm"><i class="px-4 fas fa-arrow-alt-circle-left"></i>Volver</a>
+                        </div>
+				</div>
+
+		    </div>
+            <!-- /.content-header -->
+
+			<!-- Main content -->
+			<div class="content">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-12">
+                            <div class="card card-danger">
+                                <div class="card-header bg-danger text-white">
+                                    <h3 class="card-title">Eliminacion de categoria</h3>
+                                </div>
+                                <form method="post">
+                                    {% csrf_token %}
+                                    <div class="card-body">Quiere eliminar la categoria " {{ object.nombre }} "</div>
+                                    <div>
+                                        <button type="submit" class="form-control btn btn-danger">Eliminar</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- /.card -->
+						</div>
+
+					</div>
+
+				</div><!-- /.container-fluid -->
+			</div>
+            <!-- /.content -->
+
+{% endblock %}
+
+
+{% block script %}
+{% endblock %}

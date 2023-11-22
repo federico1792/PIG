@@ -1,0 +1,24 @@
+{% extends "base-users.html" %}
+
+{% load static %}
+
+{% block content %}
+    <main class="form-signin d-flex justify-content-center text-center">
+        <form action="{% url 'login' %}" method="POST" style="width: 50%; margin-top: 10vh; margin-bottom: 10vh;">
+            {% csrf_token %}
+            <i class='bx bxs-user' style="font-size: 10rem;"></i>
+            <h1 class="h3 mb-3 fw-normal">Acceder</h1>
+            {% if errors %}
+            <div class="alert alert-danger alert-dismissible fade show mb-4" role="alert">
+                {{errors}}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endif %}
+            <input class="form-control" type="text" name="username" id="username" placeholder="Usuario" autocomplete="off">
+            <br>
+            <input type="password" class="form-control" name="password" id="password" autocomplete="off">
+            <br>
+            <button class="w-100 btn btn-lg btn-primary" type="submit">Login</button>
+        </form>
+    </main>
+{% endblock %}

@@ -1,0 +1,121 @@
+{% extends 'base-admin.html' %}
+
+
+{% block style %}
+{% endblock %}
+
+
+{% block title %}
+Dashboard
+{% endblock %}
+
+
+{% block act-dashboard %}
+active
+{% endblock %}
+
+
+{% block main %}
+		<!-- Content Wrapper. Contains page content -->
+		<div class="content-wrapper">
+			<!-- Content Header (Page header) -->
+			<div class="content-header">
+				<div class="container-fluid px-2">
+					<div class="row mb-2">
+						<div>
+							<h1 class="m-0">Starter Page</h1>
+						</div>
+					</div>
+
+					<div class="row mb-2">
+						<div>
+							<ol class="breadcrumb float-sm-left">
+							<li class="breadcrumb-item"><a href="#">Inicio</a></li>
+							<li class="breadcrumb-item active">Starter Page</li>
+							</ol>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /.content-header -->
+			
+			<!-- Main content -->
+			<div class="content">
+				<div class="container-fluid">
+					<div class="row">
+
+						<div class="col-lg-6">
+							<!-- BAR CHART -->
+							<div class="card card-success">
+								<div class="card-header">
+									<h3 class="card-title">Bar Chart</h3>
+					
+									<div class="card-tools">
+										<button type="button" class="btn btn-tool" data-card-widget="collapse">
+											<i class="fas fa-minus"></i>
+										</button>
+										<button type="button" class="btn btn-tool" data-card-widget="remove">
+											<i class="fas fa-times"></i>
+										</button>
+									</div>
+								</div>
+								<div class="card-body">
+									<div class="chart">
+										<canvas id="barChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+									</div>
+								</div>
+								<!-- /.card-body -->
+							</div>
+						</div>
+						<div class="col-lg-6">
+							<form action="" method="POST">
+								{% csrf_token %}
+								<div class="row">
+									<div class="col-12 text-center"><h3>Filtrar gastos por fecha</h3></div>
+								</div>
+								<div class="row">
+									<div class="col-6">{{fecha.fecha_uno}}</div>
+									<div class="col-6">{{fecha.fecha_dos}}</div>
+								</div>
+								<button type="submit" class="form-control btn btn-primary">Consultar</button>
+							</form>
+							{{listado}}
+						</div>
+
+					</div>
+				</div><!-- /.container-fluid -->
+			</div>
+			<!-- /.content -->
+
+		</div>
+		<!-- /.content-wrapper -->
+{% endblock %}
+
+
+{% block script %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    window.barChartData = {{ bar_chart_data|safe }};
+</script>
+<script>
+    // Usar el mismo nombre de variable que en el template
+    let barChartData = window.barChartData;
+    $(function () {
+        // Corregir el id del canvas a 'barChart'
+        var barCtx = document.getElementById('barChart').getContext('2d');
+
+        var barChartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            datasetFill: false
+        };
+
+        var barChart = new Chart(barCtx, {
+            type: 'bar',
+            data: barChartData,
+            options: barChartOptions
+        });
+	
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,128 @@
+{% extends 'base-admin.html' %}
+
+
+{% block style %}
+{% endblock %}
+
+
+{% block title %}
+Inventario
+{% endblock %}
+
+
+{% block act-inventory %}
+active
+{% endblock %}
+
+
+{% block main %}
+
+		<!-- Content Wrapper. Contains page content -->
+		<div class="content-wrapper">
+			<!-- Content Header (Page header) -->
+			<div class="content-header">
+				<div class="container-fluid px-2">
+					<div class="row mb-2">
+						<div>
+							<h1 class="m-0">Inventario</h1>
+						</div>
+					</div>
+
+					<div class="row mb-2">
+						<div>
+							<ol class="breadcrumb float-sm-left">
+							<li class="breadcrumb-item active">Inventario</li>
+							</ol>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /.content-header -->
+			
+			<!-- Main content -->
+			<div class="content">
+				<div class="container-fluid">
+					<div class="row">
+
+						<div class="col-6">
+							<div class="small-box bg-primary">
+								<div class="inner">
+								    <h3>{{total_products|length}}</h3>
+				  
+								    <p>Productos</p>
+								</div>
+								<div class="icon">
+									<i class="nav-icon fas fa-database"></i>
+								</div>
+								<a href="{% url 'list-products' %}" class="small-box-footer">Productos <i class="fas fa-arrow-circle-right"></i></a>
+							</div>
+						</div>
+
+						<div class="col-6">
+							<div class="small-box bg-warning">
+								<div class="inner">
+								    <h3>{{total_categories|length}}</h3>
+				  
+								    <p>Categorias</p>
+								</div>
+								<div class="icon">
+                                    <i class="fas fa-th"></i>
+								</div>
+								<a href="{% url 'list-categories' %}" class="small-box-footer">Categorias <i class="fas fa-arrow-circle-right"></i></a>
+							</div>
+						</div>
+
+					</div>
+
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="card">
+								<div class="card-header bg-info">
+									<h3 class="card-title">Ultimos agregados</h3>
+								</div>
+								<!-- /.card-header -->
+								<div class="table-responsive card-body p-0">
+									<table class="table table-striped">
+										<thead>
+											<tr>
+												<th>Codigo</th>
+												<th>Nombre</th>
+												<th>Categoria</th>
+												<th>Cantidad</th>
+											</tr>
+										</thead>
+										<tbody>
+											{% for producto in latest_added %}
+											<tr>
+												<td># {{producto.code}}</td>
+												<td>{{producto.name}}</td>
+												<td>{{producto.category}}</td>
+												<td><span class="
+													{% if 200 < producto.stock and producto.stock < 1000 %}badge bg-warning
+													{% elif producto.stock > 999 %}badge bg-success
+													{% else %}badge bg-danger
+													{% endif %}
+													">{{producto.stock}}</span></td>
+											</tr>
+											{% endfor %}
+										</tbody>
+									</table>
+								</div>
+								<!-- /.card-body -->
+							</div>
+						</div>
+					</div>
+
+				</div><!-- /.container-fluid -->
+			</div>
+			<!-- /.content -->
+
+		</div>
+		<!-- /.content-wrapper -->
+
+{% endblock %}
+
+
+{% block script %}
+{% endblock %}
+		
